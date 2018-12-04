@@ -1,20 +1,37 @@
+pipeline {
+    
+agent {
+        
+docker {
+            
+image 'maven:3-alpine'
+            
+args '-v /root/.m2:/root/.m2'
+        
+}
+    
+}
+    
+   
+
 stage('Test') { 
- 
-           steps {
+            
+steps {
                 
 sh 'mvn test' 
             
-}
-           
- post {
+	}
+            
+post {
                 
 always {
                     
-junit 'target/surefire-reports/*.xml' 
-               
- }
-           
- }
+junit 'target/surefire-reports/*.xml'
+  }
+            
        
- }
-    
+
+    }
+
+}
+  
